@@ -1,0 +1,274 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  CUSTOMER
+  STUDIO_ADMIN
+  SUPER_ADMIN
+}
+
+enum StudioStatus {
+  PENDING
+  ACTIVE
+  INACTIVE
+}
+
+enum OrderStatus {
+  PLACED
+  ASSIGNED
+  PRINTING
+  READY
+  COMPLETED
+  CANCELLED
+}
+
+enum PrintJobStatus {
+  PENDING
+  PREFLIGHTING
+  READY_FOR_PRESS
+  PRINTING
+  QA_INSPECTION
+  COMPLETED
+  REJECTED
+}
+
+enum DeliveryMethod {
+  PICKUP
+  DELIVERY
+}
+
+enum DeliveryStatus {
+  READY
+  PICKED_UP
+  OUT_FOR_DELIVERY
+  DELIVERED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  REFUNDED
+}
+
+enum PayoutStatus {
+  PENDING
+  PAID
+}
+
+enum PrintSize {
+  SIZE_4X6
+  SIZE_5X7
+  SIZE_A4
+  SIZE_PASSPORT
+  SIZE_8X10
+  SIZE_12X18
+}
+
+enum PaperType {
+  GLOSSY
+  MATTE
+  LUSTRE
+}
+
+enum PrintFinish {
+  BORDERLESS
+  WHITE_BORDER
+}
+
+enum RecipientType {
+  CUSTOMER
+  STUDIO
+  SUPER_ADMIN
+}
+
+model User {
+  id           String    @id @default(uuid())
+  name         String
+  email        String    @unique
+  phone        String?
+  passwordHash String
+  role         Role      @default(CUSTOMER)
+  studioId     String?
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  studio       PhotoStudio? @relation(fields: [studioId], references: [id], onDelete: SetNull)
+  orders       Order[]
+  addresses    Address[]
+}
+
+model Address {
+  id        String   @id @default(uuid())
+  userId    String
+  label     String   @default("Home")
+  fullName  String?
+  phone     String?
+  line1     String
+  city      String
+  pincode   String
+  lat       Float?
+  lng       Float?
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders    Order[]
+}
+
+model PhotoStudio {
+  id              String       @id @default(uuid())
+  name            String
+  ownerName       String
+  email           String       @unique
+  phone           String
+  address         String
+  city            String
+  pincode         String
+  lat             Float?
+  lng             Float?
+  status          StudioStatus @default(PENDING)
+  commissionRate  Float        @default(15.0) // Platform commission in %
+  rating          Float        @default(5.0)
+  reviewCount     Int          @default(0)
+  workingHours    String       @default("9:00 AM - 8:00 PM")
+  servicesOffered String?      @default("4x6, 5x7, A4, Passport, Glossy, Matte, Lustre")
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  users           User[]
+  orders          Order[]
+  printJobs       PrintJob[]
+  payouts         Payout[]
+}
+
+model Order {
+  id                 String         @id @default(uuid())
+  orderNumber        String         @unique // e.g. "CB-84920"
+  customerId         String
+  studioId           String?
+  status             OrderStatus    @default(PLACED)
+  deliveryMethod     DeliveryMethod @default(PICKUP)
+  deliveryState      DeliveryStatus @default(READY)
+  pickupPin          String?        // 6-digit verification PIN for counter collection
+  courierName        String?        // e.g. "Sundar Courier", "DHL Express"
+  waybillNumber      String?        // Tracking / Consignment note #
+  trackingUrl        String?
+  deliveredAt        DateTime?
+  deliveryAddressId  String?
+  subtotal           Float
+  deliveryFee        Float          @default(0.0)
+  platformFee        Float          @default(0.0)
+  totalAmount        Float
+  paymentStatus      PaymentStatus  @default(PENDING)
+  notes              String?
+  cancellationReason String?
+  estimatedReadyAt   DateTime?
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  customer           User           @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  studio             PhotoStudio?   @relation(fields: [studioId], references: [id], onDelete: SetNull)
+  deliveryAddress    Address?       @relation(fields: [deliveryAddressId], references: [id], onDelete: SetNull)
+  items              OrderItem[]
+  printJobs          PrintJob[]
+  payments           Payment[]
+}
+
+model OrderItem {
+  id               String      @id @default(uuid())
+  orderId          String
+  photoUrl         String
+  originalFilename String?
+  size             PrintSize   @default(SIZE_4X6)
+  paperType        PaperType   @default(GLOSSY)
+  finish           PrintFinish @default(BORDERLESS)
+  quantity         Int         @default(1)
+  unitPrice        Float
+  totalPrice       Float
+  cropRotation     Int         @default(0)
+  cropAspect       String?     @default("original")
+
+  order            Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  printJob         PrintJob?
+}
+
+model PrintJob {
+  id                String         @id @default(uuid())
+  orderId           String
+  orderItemId       String         @unique
+  studioId          String?
+  status            PrintJobStatus @default(PENDING)
+  rawAssetKey       String         // Path/key in Cloudflare R2 raw ingress bucket
+  masterAssetKey    String?        // 300 DPI ready-for-press print master in private bucket
+  proofAssetKey     String?        // Watermarked preview in CDN bucket
+  detectedDpi       Int?           // Calculated pixel density
+  exifOrientation   Int?           // EXIF orientation tag
+  colorSpace        String?        @default("sRGB")
+  aspectRatioMatch  Boolean        @default(true)
+  preflightWarnings String[]
+  jobDocketNumber   String         @unique // e.g. "JOB-84920-1"
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  order             Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderItem         OrderItem      @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+  studio            PhotoStudio?   @relation(fields: [studioId], references: [id], onDelete: SetNull)
+}
+
+model Payment {
+  id            String        @id @default(uuid())
+  orderId       String
+  amount        Float
+  currency      String        @default("$")
+  method        String        @default("MOCK_PAYMENT")
+  status        PaymentStatus @default(PENDING)
+  transactionId String        @unique
+  createdAt     DateTime      @default(now())
+
+  order         Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model Payout {
+  id               String       @id @default(uuid())
+  studioId         String
+  periodStart      DateTime
+  periodEnd        DateTime
+  orderIds         String[]     // Native PostgreSQL array of order IDs for financial auditability
+  grossAmount      Float
+  commissionAmount Float
+  netPayout        Float
+  status           PayoutStatus @default(PENDING)
+  paidAt           DateTime?
+  transactionRef   String?
+  notes            String?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  studio           PhotoStudio  @relation(fields: [studioId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id            String        @id @default(uuid())
+  recipientType RecipientType
+  recipientId   String        // userId, studioId, or "ALL_ADMINS"
+  title         String
+  message       String
+  link          String?
+  isRead        Boolean       @default(false)
+  createdAt     DateTime      @default(now())
+}
+
+model PlatformSetting {
+  key         String   @id
+  value       String
+  description String?
+  updatedAt   DateTime @updatedAt
+}

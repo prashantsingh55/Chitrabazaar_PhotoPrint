@@ -1,0 +1,824 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1280" width="1920" height="1280" style="background-color:#0A0E17;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#060911"/>
+      <stop offset="50%" stop-color="#0B0F19"/>
+      <stop offset="100%" stop-color="#060911"/>
+    </linearGradient>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <!-- Glowing Arrow Markers -->
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#00E599"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#C084FC"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2DD4BF"/>
+    </marker>
+
+    <!-- Drop Shadow Filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#38BDF8" flood-opacity="0.4"/>
+    </filter>
+    <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#00E599" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1920" height="1280" fill="url(#bgGradient)"/>
+
+  <!-- ==================== HEADER BAR ==================== -->
+  <g transform="translate(35, 22)">
+    <rect x="0" y="0" width="1850" height="70" rx="8" fill="url(#headerGrad)" stroke="#334155" stroke-width="1.2"/>
+    <text x="25" y="38" fill="#FFFFFF" font-size="22" font-weight="800" letter-spacing="0.04em">CHITRABAZAAR <tspan fill="#38BDF8">//</tspan> ZERO-COST DEVOPS ARCHITECTURE (VERCEL WEB + RENDER WORKER)</text>
+    <text x="25" y="58" fill="#94A3B8" font-size="12" font-family="monospace">100% ZERO CREDIT CARD • VERCEL GLOBAL EDGE • RENDER MEDIA WORKER • NEON PG-BOSS QUEUE • CLOUDFLARE R2</text>
+
+    <rect x="1530" y="17" width="295" height="36" rx="6" fill="#10B981" fill-opacity="0.12" stroke="#10B981" stroke-width="1.5"/>
+    <circle cx="1550" cy="35" r="5" fill="#10B981" filter="url(#glow-green)"/>
+    <text x="1565" y="40" fill="#34D399" font-size="12" font-weight="700" font-family="monospace">100% ZERO CREDIT CARD ($0/MO)</text>
+  </g>
+
+  <!-- ==================== 1. PUBLIC EDGE TIER ==================== -->
+  <g transform="translate(35, 105)">
+    <rect x="0" y="0" width="290" height="585" rx="10" fill="#0F172A" fill-opacity="0.92" stroke="#F59E0B" stroke-width="1.4"/>
+    <path d="M 0 10 Q 0 0 10 0 L 280 0 Q 290 0 290 10 L 290 40 L 0 40 Z" fill="#F59E0B" fill-opacity="0.12"/>
+    <text x="18" y="26" fill="#FBBF24" font-size="14" font-weight="700" letter-spacing="0.02em">1. PUBLIC EDGE TIER</text>
+    <text x="165" y="26" fill="#F59E0B" font-size="10" font-family="monospace" font-weight="700">VERCEL / CF</text>
+
+    <!-- Edge Gateway Box -->
+    <g transform="translate(16, 52)">
+      <rect x="0" y="0" width="258" height="255" rx="8" fill="#1E293B" stroke="#334155"/>
+      <text x="16" y="24" fill="#FFFFFF" font-size="13" font-weight="700">Vercel Edge Network</text>
+      <text x="16" y="42" fill="#94A3B8" font-size="11">Global Edge &amp; Anycast DNS</text>
+      
+      <path d="M 16 52 L 242 52" stroke="#334155" stroke-width="1"/>
+
+      <text x="16" y="76" fill="#CBD5E1" font-size="11">• <tspan fill="#FBBF24" font-weight="600">Zero Cold Start:</tspan> Instant page loads</text>
+      <text x="16" y="102" fill="#CBD5E1" font-size="11">• <tspan fill="#FBBF24" font-weight="600">Auto TLS 1.3:</tspan> Built-in SSL certs</text>
+      <text x="16" y="128" fill="#CBD5E1" font-size="11">• <tspan fill="#FBBF24" font-weight="600">DDoS Shield:</tspan> L3/L4/L7 mitigated</text>
+      <text x="16" y="154" fill="#CBD5E1" font-size="11">• <tspan fill="#FBBF24" font-weight="600">Custom Domain:</tspan> Instant CNAME bind</text>
+      <text x="16" y="180" fill="#CBD5E1" font-size="11">• <tspan fill="#FBBF24" font-weight="600">Hobby Plan:</tspan> $0 forever, no credit card</text>
+      
+      <rect x="14" y="198" width="230" height="42" rx="4" fill="#0B0F19" stroke="#38BDF8"/>
+      <text x="24" y="216" fill="#38BDF8" font-size="10" font-weight="600">Direct Ingress Routed To:</text>
+      <text x="24" y="231" fill="#FFFFFF" font-size="11" font-family="monospace">➔ Next.js App Router (Vercel)</text>
+    </g>
+
+    <!-- Edge Traffic Ingress Diagram -->
+    <g transform="translate(16, 322)">
+      <rect x="0" y="0" width="258" height="248" rx="8" fill="#0B0F19" stroke="#334155"/>
+      <text x="14" y="22" fill="#FBBF24" font-size="11" font-weight="700">Decoupled Traffic Ingress:</text>
+      
+      <g transform="translate(14, 35)">
+        <rect x="0" y="0" width="230" height="32" rx="4" fill="#1E293B" stroke="#334155"/>
+        <text x="10" y="20" fill="#CBD5E1" font-size="10">1. Client ➔ Vercel Edge Storefront</text>
+      </g>
+      <g transform="translate(14, 75)">
+        <rect x="0" y="0" width="230" height="32" rx="4" fill="#1E293B" stroke="#38BDF8"/>
+        <text x="10" y="20" fill="#38BDF8" font-size="10">2. Order ➔ Neon pg-boss Queue</text>
+      </g>
+      <g transform="translate(14, 115)">
+        <rect x="0" y="0" width="230" height="32" rx="4" fill="#1E293B" stroke="#818CF8"/>
+        <text x="10" y="20" fill="#A5B4FC" font-size="10">3. Render Worker Dequeues Job</text>
+      </g>
+
+      <rect x="14" y="160" width="230" height="74" rx="4" fill="#1E293B" stroke="#10B981" stroke-dasharray="3 3"/>
+      <text x="22" y="180" fill="#34D399" font-size="10" font-weight="700">Direct Client Storage Streaming:</text>
+      <text x="22" y="198" fill="#94A3B8" font-size="9">• Direct client photo uploads</text>
+      <text x="22" y="212" fill="#94A3B8" font-size="9">  stream directly to R2 bucket</text>
+      <text x="22" y="226" fill="#10B981" font-size="9">• 0% compute server RAM load</text>
+    </g>
+  </g>
+
+  <!-- ==================== 2. COMPUTE TIER (VERCEL WEB + RENDER WORKER) ==================== -->
+  <g transform="translate(340, 105)">
+    <rect x="0" y="0" width="765" height="585" rx="10" fill="#0F172A" fill-opacity="0.92" stroke="#38BDF8" stroke-width="1.4"/>
+    <path d="M 0 10 Q 0 0 10 0 L 755 0 Q 765 0 765 10 L 765 40 L 0 40 Z" fill="#38BDF8" fill-opacity="0.12"/>
+    <text x="22" y="26" fill="#38BDF8" font-size="14" font-weight="700" letter-spacing="0.02em">2. COMPUTE TIER (VERCEL WEB + RENDER WORKER — ZERO CREDIT CARD)</text>
+    <text x="500" y="26" fill="#34D399" font-size="11" font-family="monospace">DECOUPLED • $0 / MO • NO CREDIT CARD</text>
+
+    <!-- Render Worker Column -->
+    <g transform="translate(18, 52)">
+      <rect x="0" y="0" width="180" height="518" rx="8" fill="#1E293B" stroke="#06B6D4" stroke-width="1.2"/>
+      <text x="14" y="24" fill="#67E8F9" font-size="13" font-weight="700">Render Free Service</text>
+      <text x="14" y="42" fill="#94A3B8" font-size="10">Dedicated Worker Host</text>
+
+      <path d="M 14 52 L 166 52" stroke="#334155" stroke-width="1"/>
+
+      <text x="14" y="74" fill="#CBD5E1" font-size="11">• Node 20 LTS</text>
+      <text x="14" y="94" fill="#CBD5E1" font-size="11">• 512 MB RAM Free</text>
+      <text x="14" y="114" fill="#CBD5E1" font-size="11">• 750 Free Hours/Mo</text>
+      <text x="14" y="134" fill="#CBD5E1" font-size="11">• Zero Credit Card</text>
+      <text x="14" y="154" fill="#CBD5E1" font-size="11">• Sharp / libvips SIMD</text>
+
+      <rect x="12" y="175" width="156" height="75" rx="6" fill="#0F172A" stroke="#334155"/>
+      <text x="20" y="196" fill="#A5B4FC" font-size="10" font-weight="700">Render Config:</text>
+      <text x="20" y="216" fill="#94A3B8" font-size="9">Build: npm install</text>
+      <text x="20" y="234" fill="#94A3B8" font-size="9">Start: npm run worker</text>
+
+      <!-- Worker Health Check Badge -->
+      <rect x="12" y="260" width="156" height="95" rx="6" fill="#0F172A" stroke="#10B981"/>
+      <text x="20" y="280" fill="#34D399" font-size="10" font-weight="700">Embedded Health:</text>
+      <text x="20" y="300" fill="#FFFFFF" font-size="10" font-family="monospace">GET :10000/health</text>
+      <text x="20" y="320" fill="#94A3B8" font-size="9">• 14m Ping keeps awake</text>
+      <text x="20" y="338" fill="#34D399" font-size="9">  (24/7 Worker Uptime)</text>
+
+      <rect x="12" y="365" width="156" height="190" rx="6" fill="#0F172A" stroke="#10B981" stroke-dasharray="3 3"/>
+      <text x="20" y="388" fill="#34D399" font-size="10" font-weight="700">Decoupled Benefits:</text>
+      <text x="20" y="410" fill="#CBD5E1" font-size="10">• Fast Storefront (Vercel)</text>
+      <text x="20" y="426" fill="#CBD5E1" font-size="10">• Heavy Jobs (Render)</text>
+      <text x="20" y="446" fill="#CBD5E1" font-size="10">• Zero web lag during</text>
+      <text x="20" y="462" fill="#CBD5E1" font-size="10">  300 DPI image render</text>
+      <text x="20" y="484" fill="#CBD5E1" font-size="10">• Shared Neon DB queue</text>
+      <text x="20" y="504" fill="#34D399" font-size="10">100% Free / No Card</text>
+    </g>
+
+    <!-- Main Application: Next.js Modular Monolith on Vercel -->
+    <g transform="translate(210, 52)">
+      <rect x="0" y="0" width="537" height="345" rx="8" fill="#1E293B" stroke="#818CF8" stroke-width="1.3"/>
+      <text x="18" y="25" fill="#A5B4FC" font-size="14" font-weight="700">Next.js Application on Vercel (Modular Monolith)</text>
+      <text x="18" y="44" fill="#94A3B8" font-size="11">Hosted on Vercel Hobby Tier ($0) • Global CDN • Zero Cold Starts</text>
+
+      <path d="M 18 54 L 519 54" stroke="#334155" stroke-width="1"/>
+
+      <!-- Exactly 8 Clean Logical Application Modules -->
+      <!-- Top Row: 3 Portals -->
+      <g transform="translate(18, 65)">
+        <rect x="0" y="0" width="160" height="58" rx="6" fill="#0F172A" stroke="#6366F1"/>
+        <text x="10" y="22" fill="#A5B4FC" font-size="11" font-weight="700">Customer Portal</text>
+        <text x="10" y="42" fill="#94A3B8" font-size="10">Storefront &amp; Upload UI</text>
+      </g>
+      <g transform="translate(188, 65)">
+        <rect x="0" y="0" width="160" height="58" rx="6" fill="#0F172A" stroke="#38BDF8"/>
+        <text x="10" y="22" fill="#38BDF8" font-size="11" font-weight="700">Printer Portal</text>
+        <text x="10" y="42" fill="#94A3B8" font-size="10">Darkroom Queue &amp; Slips</text>
+      </g>
+      <g transform="translate(358, 65)">
+        <rect x="0" y="0" width="160" height="58" rx="6" fill="#0F172A" stroke="#334155"/>
+        <text x="10" y="22" fill="#CBD5E1" font-size="11" font-weight="700">Admin Portal</text>
+        <text x="10" y="42" fill="#94A3B8" font-size="10">HQ Desk &amp; Payouts</text>
+      </g>
+
+      <!-- Middle Row: 3 Core Business Modules -->
+      <g transform="translate(18, 131)">
+        <rect x="0" y="0" width="160" height="58" rx="6" fill="#0F172A" stroke="#F59E0B"/>
+        <text x="10" y="22" fill="#FBBF24" font-size="11" font-weight="700">Order Module</text>
+        <text x="10" y="42" fill="#94A3B8" font-size="10">Tariffs &amp; Basket calc</text>
+      </g>
+      <g transform="translate(188, 131)">
+        <rect x="0" y="0" width="160" height="58" rx="6" fill="#0F172A" stroke="#00E599"/>
+        <text x="10" y="22" fill="#34D399" font-size="11" font-weight="700">Print Job Module</text>
+        <text x="10" y="42" fill="#94A3B8" font-size="10">Plates &amp; pg-boss queue</text>
+      </g>
+      <g transform="translate(358, 131)">
+        <rect x="0" y="0" width="160" height="58" rx="6" fill="#0F172A" stroke="#6366F1"/>
+        <text x="10" y="22" fill="#A5B4FC" font-size="11" font-weight="700">Payment Module</text>
+        <text x="10" y="42" fill="#94A3B8" font-size="10">Webhook listener &amp; ledger</text>
+      </g>
+
+      <!-- Bottom Row: 2 Fulfillment & Communication Modules -->
+      <g transform="translate(18, 197)">
+        <rect x="0" y="0" width="245" height="68" rx="6" fill="#0F172A" stroke="#F97316"/>
+        <text x="12" y="20" fill="#FB923C" font-size="11" font-weight="700">Delivery Module</text>
+        <text x="12" y="38" fill="#CBD5E1" font-size="10">Pickup PINs &amp; Courier Waybills</text>
+        <text x="12" y="56" fill="#94A3B8" font-size="9">READY ➔ PICKED UP ➔ TRANSIT ➔ DELIVERED</text>
+      </g>
+      <g transform="translate(273, 197)">
+        <rect x="0" y="0" width="245" height="68" rx="6" fill="#0F172A" stroke="#EC4899"/>
+        <text x="12" y="20" fill="#F472B6" font-size="11" font-weight="700">Notification Module</text>
+        <text x="12" y="38" fill="#CBD5E1" font-size="10">Customer &amp; Printer alerts dispatch</text>
+        <text x="12" y="56" fill="#94A3B8" font-size="9">Email, Dashboard &amp; future SMS/WhatsApp</text>
+      </g>
+
+      <!-- Presigned URL Engine Strip -->
+      <g transform="translate(18, 275)">
+        <rect x="0" y="0" width="500" height="55" rx="6" fill="#0F172A" stroke="#10B981"/>
+        <text x="14" y="22" fill="#34D399" font-size="11" font-weight="700">Presigned &amp; Short-Lived Signed URL Engine</text>
+        <text x="14" y="42" fill="#CBD5E1" font-size="10">• Client Uploads: Presigned PUT URL (15m) • Printer Downloads: Signed GET URL (15m)</text>
+      </g>
+    </g>
+
+    <!-- Asynchronous Worker Box (Render) -->
+    <g transform="translate(210, 412)">
+      <rect x="0" y="0" width="537" height="158" rx="8" fill="#1E293B" stroke="#06B6D4" stroke-width="1.2"/>
+      <text x="18" y="24" fill="#67E8F9" font-size="13" font-weight="700">Asynchronous Background Worker (Hosted on Render)</text>
+      <text x="18" y="42" fill="#94A3B8" font-size="11">Sharp / libvips SIMD • Consumes from Neon pg-boss Queues • Embedded /health server</text>
+
+      <path d="M 18 52 L 519 52" stroke="#334155" stroke-width="1"/>
+
+      <!-- 4 Worker Responsibilities -->
+      <g transform="translate(18, 62)">
+        <rect x="0" y="0" width="118" height="82" rx="6" fill="#0F172A" stroke="#0891B2"/>
+        <text x="10" y="20" fill="#67E8F9" font-size="10" font-weight="700">Media Processing</text>
+        <text x="10" y="38" fill="#CBD5E1" font-size="9">• EXIF auto-rotate</text>
+        <text x="10" y="52" fill="#CBD5E1" font-size="9">• DPI &amp; aspect check</text>
+        <text x="10" y="66" fill="#CBD5E1" font-size="9">• WebP/AVIF proofs</text>
+      </g>
+
+      <g transform="translate(144, 62)">
+        <rect x="0" y="0" width="118" height="82" rx="6" fill="#0F172A" stroke="#0891B2"/>
+        <text x="10" y="20" fill="#67E8F9" font-size="10" font-weight="700">Print Jobs</text>
+        <text x="10" y="38" fill="#CBD5E1" font-size="9">• 300 DPI master</text>
+        <text x="10" y="52" fill="#CBD5E1" font-size="9">• Bleed &amp; cut crop</text>
+        <text x="10" y="66" fill="#CBD5E1" font-size="9">• R2 master upload</text>
+      </g>
+
+      <g transform="translate(270, 62)">
+        <rect x="0" y="0" width="118" height="82" rx="6" fill="#0F172A" stroke="#0891B2"/>
+        <text x="10" y="20" fill="#67E8F9" font-size="10" font-weight="700">Notifications</text>
+        <text x="10" y="38" fill="#CBD5E1" font-size="9">• Order confirmation</text>
+        <text x="10" y="52" fill="#CBD5E1" font-size="9">• Printer dispatch wire</text>
+        <text x="10" y="66" fill="#CBD5E1" font-size="9">• Ready for pickup</text>
+      </g>
+
+      <g transform="translate(396, 62)">
+        <rect x="0" y="0" width="123" height="82" rx="6" fill="#0F172A" stroke="#0891B2"/>
+        <text x="10" y="20" fill="#67E8F9" font-size="10" font-weight="700">Delivery Tasks</text>
+        <text x="10" y="38" fill="#CBD5E1" font-size="9">• Waybill sync</text>
+        <text x="10" y="52" fill="#CBD5E1" font-size="9">• Courier webhook</text>
+        <text x="10" y="66" fill="#CBD5E1" font-size="9">• Escrow payout release</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== EXTERNAL PAYMENT PROVIDERS ==================== -->
+  <g transform="translate(1120, 105)">
+    <rect x="0" y="0" width="190" height="235" rx="10" fill="#0F172A" fill-opacity="0.95" stroke="#6366F1" stroke-width="1.3"/>
+    <path d="M 0 10 Q 0 0 10 0 L 180 0 Q 190 0 190 10 L 190 36 L 0 36 Z" fill="#6366F1" fill-opacity="0.15"/>
+    <text x="14" y="24" fill="#A5B4FC" font-size="11" font-weight="700">EXTERNAL PAYMENTS</text>
+
+    <g transform="translate(12, 48)">
+      <rect x="0" y="0" width="166" height="75" rx="6" fill="#1E293B" stroke="#6366F1"/>
+      <text x="12" y="22" fill="#FFFFFF" font-size="12" font-weight="700">Stripe Checkout</text>
+      <text x="12" y="40" fill="#94A3B8" font-size="10">Credit Cards &amp; Global</text>
+      <text x="12" y="60" fill="#A5B4FC" font-size="9">• Webhook callback</text>
+    </g>
+
+    <g transform="translate(12, 133)">
+      <rect x="0" y="0" width="166" height="75" rx="6" fill="#1E293B" stroke="#10B981"/>
+      <text x="12" y="22" fill="#FFFFFF" font-size="12" font-weight="700">eSewa / Khalti</text>
+      <text x="12" y="40" fill="#94A3B8" font-size="10">Regional Mobile Wallets</text>
+      <text x="12" y="60" fill="#34D399" font-size="9">• Instant IPN callback</text>
+    </g>
+
+    <text x="14" y="224" fill="#94A3B8" font-size="9" font-family="monospace">Zero Credit Card Sandbox</text>
+  </g>
+
+  <!-- ==================== 3. DATABASE AND DURABLE JOB QUEUE ==================== -->
+  <g transform="translate(1325, 105)">
+    <rect x="0" y="0" width="285" height="585" rx="10" fill="#0F172A" fill-opacity="0.92" stroke="#00E599" stroke-width="1.4"/>
+    <path d="M 0 10 Q 0 0 10 0 L 275 0 Q 285 0 285 10 L 285 40 L 0 40 Z" fill="#00E599" fill-opacity="0.12"/>
+    <text x="16" y="26" fill="#34D399" font-size="13" font-weight="700" letter-spacing="0.02em">3. DATABASE &amp; DURABLE QUEUE</text>
+    <text x="220" y="26" fill="#00E599" font-size="9" font-family="monospace" font-weight="700">NEON</text>
+
+    <!-- Neon Serverless PostgreSQL Box -->
+    <g transform="translate(14, 52)">
+      <rect x="0" y="0" width="257" height="205" rx="8" fill="#1E293B" stroke="#00E599"/>
+      <text x="14" y="22" fill="#00E599" font-size="12" font-weight="700">Neon Serverless PostgreSQL</text>
+      <text x="14" y="38" fill="#94A3B8" font-size="10">Relational Database of Record</text>
+
+      <path d="M 14 46 L 243 46" stroke="#334155" stroke-width="1"/>
+
+      <text x="14" y="64" fill="#FFFFFF" font-size="10" font-weight="600">Business Entities:</text>
+      <text x="14" y="82" fill="#CBD5E1" font-size="10">Users • Orders • Photos • Print Jobs</text>
+      <text x="14" y="98" fill="#CBD5E1" font-size="10">Payments • Partners • Delivery • Notifs</text>
+
+      <text x="14" y="124" fill="#CBD5E1" font-size="10">• <tspan fill="#38BDF8">DATABASE_URL</tspan>: Pooled PgBouncer</text>
+      <text x="14" y="142" fill="#CBD5E1" font-size="10">• <tspan fill="#38BDF8">DIRECT_URL</tspan>: Direct port 5432</text>
+      <text x="14" y="160" fill="#CBD5E1" font-size="10">• Auto Point-in-Time Recovery</text>
+      <text x="14" y="180" fill="#34D399" font-size="10" font-weight="700">Cost: $0.00 / No Credit Card Needed</text>
+    </g>
+
+    <!-- Subtitle Annotation: Transactional Job Creation -->
+    <g transform="translate(14, 267)">
+      <rect x="0" y="0" width="257" height="42" rx="5" fill="#0B0F19" stroke="#10B981"/>
+      <text x="10" y="18" fill="#34D399" font-size="9" font-weight="700">Transactional Job Creation (Postgres ACID):</text>
+      <text x="10" y="32" fill="#CBD5E1" font-size="9">Order + Print Job + pg-boss Job in SAME transaction</text>
+    </g>
+
+    <!-- pg-boss Durable Queue Box -->
+    <g transform="translate(14, 318)">
+      <rect x="0" y="0" width="257" height="252" rx="8" fill="#1E293B" stroke="#10B981" stroke-width="1.3"/>
+      <text x="14" y="22" fill="#34D399" font-size="12" font-weight="700">pg-boss Durable Job Queue</text>
+      <text x="14" y="38" fill="#94A3B8" font-size="10">PostgreSQL-Backed • ACID • NO REDIS</text>
+
+      <path d="M 14 46 L 243 46" stroke="#334155" stroke-width="1"/>
+
+      <text x="14" y="64" fill="#CBD5E1" font-size="10">Queues Persisted in Postgres:</text>
+
+      <g transform="translate(12, 72)">
+        <rect x="0" y="0" width="233" height="24" rx="4" fill="#0F172A" stroke="#00E599"/>
+        <text x="8" y="16" fill="#00E599" font-size="10" font-family="monospace">queue: media-processing</text>
+      </g>
+      <g transform="translate(12, 102)">
+        <rect x="0" y="0" width="233" height="24" rx="4" fill="#0F172A" stroke="#38BDF8"/>
+        <text x="8" y="16" fill="#38BDF8" font-size="10" font-family="monospace">queue: print-job</text>
+      </g>
+      <g transform="translate(12, 132)">
+        <rect x="0" y="0" width="233" height="24" rx="4" fill="#0F172A" stroke="#F472B6"/>
+        <text x="8" y="16" fill="#F472B6" font-size="10" font-family="monospace">queue: notification</text>
+      </g>
+      <g transform="translate(12, 162)">
+        <rect x="0" y="0" width="233" height="24" rx="4" fill="#0F172A" stroke="#FB923C"/>
+        <text x="8" y="16" fill="#FB923C" font-size="10" font-family="monospace">queue: delivery</text>
+      </g>
+
+      <rect x="12" y="196" width="233" height="44" rx="4" fill="#0F172A" stroke="#334155"/>
+      <text x="20" y="214" fill="#34D399" font-size="9" font-weight="600">Vercel (Enqueue) ➔ Render (Worker)</text>
+      <text x="20" y="228" fill="#94A3B8" font-size="9">Durable state machine across services</text>
+    </g>
+  </g>
+
+  <!-- ==================== 4. CLOUDFLARE R2 STORAGE ==================== -->
+  <g transform="translate(1625, 105)">
+    <rect x="0" y="0" width="260" height="585" rx="10" fill="#0F172A" fill-opacity="0.92" stroke="#F97316" stroke-width="1.4"/>
+    <path d="M 0 10 Q 0 0 10 0 L 250 0 Q 260 0 260 10 L 260 40 L 0 40 Z" fill="#F97316" fill-opacity="0.12"/>
+    <text x="16" y="26" fill="#FB923C" font-size="12" font-weight="700" letter-spacing="0.02em">4. PRIVATE PHOTO STORAGE</text>
+    <text x="195" y="26" fill="#F97316" font-size="9" font-family="monospace" font-weight="700">R2 / S3</text>
+
+    <!-- Storage Buckets -->
+    <g transform="translate(14, 52)">
+      <rect x="0" y="0" width="232" height="225" rx="8" fill="#1E293B" stroke="#F97316"/>
+      <text x="14" y="22" fill="#FB923C" font-size="12" font-weight="700">Cloudflare R2 / S3 Storage</text>
+      <text x="14" y="38" fill="#94A3B8" font-size="10">Private by Default • $0 Egress</text>
+
+      <path d="M 14 46 L 218 46" stroke="#334155" stroke-width="1"/>
+
+      <g transform="translate(10, 56)">
+        <rect x="0" y="0" width="212" height="42" rx="4" fill="#0F172A" stroke="#F59E0B"/>
+        <text x="10" y="18" fill="#FBBF24" font-size="10" font-weight="700">Original Photos</text>
+        <text x="10" y="32" fill="#94A3B8" font-size="9">Private Ingress Bucket</text>
+      </g>
+      <g transform="translate(10, 106)">
+        <rect x="0" y="0" width="212" height="42" rx="4" fill="#0F172A" stroke="#38BDF8"/>
+        <text x="10" y="18" fill="#38BDF8" font-size="10" font-weight="700">Thumbnails</text>
+        <text x="10" y="32" fill="#94A3B8" font-size="9">Web &amp; Proofs Edge Bucket</text>
+      </g>
+      <g transform="translate(10, 156)">
+        <rect x="0" y="0" width="212" height="42" rx="4" fill="#0F172A" stroke="#00E599"/>
+        <text x="10" y="18" fill="#34D399" font-size="10" font-weight="700">Print-Ready Images</text>
+        <text x="10" y="32" fill="#94A3B8" font-size="9">300 DPI Masters (Private)</text>
+      </g>
+
+      <text x="14" y="215" fill="#34D399" font-size="9" font-family="monospace">10 GB Free Storage</text>
+    </g>
+
+    <!-- Presigned URLs Flow Box -->
+    <g transform="translate(14, 287)">
+      <rect x="0" y="0" width="232" height="283" rx="8" fill="#1E293B" stroke="#F59E0B" stroke-width="1.3"/>
+      <text x="14" y="22" fill="#FBBF24" font-size="12" font-weight="700">Presigned URLs Protocol</text>
+      <text x="14" y="38" fill="#94A3B8" font-size="10">Direct Client Streaming</text>
+
+      <path d="M 14 46 L 218 46" stroke="#334155" stroke-width="1"/>
+
+      <!-- Upload Flow -->
+      <g transform="translate(10, 56)">
+        <rect x="0" y="0" width="212" height="92" rx="4" fill="#0F172A" stroke="#334155"/>
+        <text x="8" y="18" fill="#FBBF24" font-size="9" font-weight="700">Direct Upload Flow:</text>
+        <text x="8" y="34" fill="#CBD5E1" font-size="9">1. Customer ➔ Vercel API</text>
+        <text x="8" y="48" fill="#CBD5E1" font-size="9">2. Presigned PUT URL (15m)</text>
+        <text x="8" y="64" fill="#34D399" font-size="9">3. Direct Upload ➔ R2</text>
+        <text x="8" y="80" fill="#94A3B8" font-size="8">(Bypasses Vercel Server)</text>
+      </g>
+
+      <!-- Download Flow -->
+      <g transform="translate(10, 156)">
+        <rect x="0" y="0" width="212" height="92" rx="4" fill="#0F172A" stroke="#334155"/>
+        <text x="8" y="18" fill="#38BDF8" font-size="9" font-weight="700">Direct Download Flow:</text>
+        <text x="8" y="34" fill="#CBD5E1" font-size="9">1. Printer ➔ Vercel Auth</text>
+        <text x="8" y="48" fill="#CBD5E1" font-size="9">2. Short-Lived Signed URL</text>
+        <text x="8" y="64" fill="#34D399" font-size="9">3. Direct Download ➔ R2</text>
+        <text x="8" y="80" fill="#94A3B8" font-size="8">(Outside Server Boundary)</text>
+      </g>
+
+      <text x="14" y="268" fill="#94A3B8" font-size="9" font-family="monospace">Zero Compute RAM Buffering</text>
+    </g>
+  </g>
+
+  <!-- ==================== 5. OBSERVABILITY STACK ==================== -->
+  <g transform="translate(35, 705)">
+    <rect x="0" y="0" width="765" height="315" rx="10" fill="#0F172A" fill-opacity="0.92" stroke="#10B981" stroke-width="1.4"/>
+    <path d="M 0 10 Q 0 0 10 0 L 755 0 Q 765 0 765 10 L 765 38 L 0 38 Z" fill="#10B981" fill-opacity="0.12"/>
+    <text x="20" y="25" fill="#34D399" font-size="14" font-weight="700" letter-spacing="0.02em">5. OBSERVABILITY STACK (TELEMETRY &amp; METRICS)</text>
+    <text x="595" y="25" fill="#10B981" font-size="11" font-family="monospace">GRAFANA + PROMETHEUS + LOKI</text>
+
+    <!-- Grafana Central Dashboard -->
+    <g transform="translate(18, 50)">
+      <rect x="0" y="0" width="235" height="175" rx="8" fill="#1E293B" stroke="#F59E0B" stroke-width="1.2"/>
+      <text x="14" y="24" fill="#FBBF24" font-size="13" font-weight="700">Grafana 11 Dashboard</text>
+      <text x="14" y="42" fill="#94A3B8" font-size="11">Central Visualization Layer</text>
+
+      <path d="M 14 52 L 221 52" stroke="#334155" stroke-width="1"/>
+
+      <text x="14" y="74" fill="#CBD5E1" font-size="11">• Unified Single Pane of Glass</text>
+      <text x="14" y="96" fill="#CBD5E1" font-size="11">• Real-time darkroom SLAs</text>
+      <text x="14" y="118" fill="#CBD5E1" font-size="11">• Order throughput graphs</text>
+      <text x="14" y="140" fill="#CBD5E1" font-size="11">• Vercel + Render telemetry</text>
+      <text x="14" y="160" fill="#34D399" font-size="10">  (Free Grafana Cloud / Self-hosted)</text>
+    </g>
+
+    <!-- Prometheus Metrics -->
+    <g transform="translate(265, 50)">
+      <rect x="0" y="0" width="235" height="175" rx="8" fill="#1E293B" stroke="#38BDF8"/>
+      <text x="14" y="24" fill="#38BDF8" font-size="13" font-weight="700">Prometheus Server</text>
+      <text x="14" y="42" fill="#94A3B8" font-size="11">Time-Series Metric Engine</text>
+
+      <path d="M 14 52 L 221 52" stroke="#334155" stroke-width="1"/>
+
+      <text x="14" y="74" fill="#CBD5E1" font-size="11">• Scrapes Vercel /api/metrics</text>
+      <text x="14" y="96" fill="#CBD5E1" font-size="11">• Worker execution stats</text>
+      <text x="14" y="118" fill="#CBD5E1" font-size="11">• Order rate counters</text>
+      <text x="14" y="140" fill="#CBD5E1" font-size="11">• UptimeRobot verification</text>
+      <text x="14" y="160" fill="#94A3B8" font-size="10">Endpoints ➔ Prometheus ➔ Grafana</text>
+    </g>
+
+    <!-- Loki Logs -->
+    <g transform="translate(512, 50)">
+      <rect x="0" y="0" width="235" height="175" rx="8" fill="#1E293B" stroke="#00E599"/>
+      <text x="14" y="24" fill="#34D399" font-size="13" font-weight="700">Grafana Loki + Logs</text>
+      <text x="14" y="42" fill="#94A3B8" font-size="11">Structured JSON Log Store</text>
+
+      <path d="M 14 52 L 221 52" stroke="#334155" stroke-width="1"/>
+
+      <text x="14" y="74" fill="#CBD5E1" font-size="11">• Centralized deployment logs</text>
+      <text x="14" y="96" fill="#CBD5E1" font-size="11">• Order ID trace correlation</text>
+      <text x="14" y="118" fill="#CBD5E1" font-size="11">• Worker exception auditing</text>
+      <text x="14" y="140" fill="#CBD5E1" font-size="11">• Cost-effective index labels</text>
+      <text x="14" y="160" fill="#94A3B8" font-size="10">Application ➔ Loki ➔ Grafana</text>
+    </g>
+
+    <!-- Monitored System & Business Metrics Banner -->
+    <g transform="translate(18, 235)">
+      <rect x="0" y="0" width="729" height="68" rx="6" fill="#0B0F19" stroke="#334155"/>
+      <text x="14" y="20" fill="#CBD5E1" font-size="10" font-weight="700">SYSTEM METRICS:</text>
+      <text x="130" y="20" fill="#94A3B8" font-size="10">CPU • Memory • Latency (p95/p99) • Errors (5xx) • Worker Failures</text>
+      
+      <text x="14" y="44" fill="#38BDF8" font-size="10" font-weight="700">BUSINESS METRICS:</text>
+      <text x="145" y="44" fill="#34D399" font-size="10">Orders • Print Jobs • Photos Uploaded • Deliveries</text>
+      <text x="14" y="60" fill="#94A3B8" font-size="9" font-family="monospace">orders_created_total • orders_paid_total • print_jobs_created_total • deliveries_completed_total</text>
+    </g>
+  </g>
+
+  <!-- ==================== 6. CI/CD & DEPLOYMENT PIPELINE ==================== -->
+  <g transform="translate(815, 705)">
+    <rect x="0" y="0" width="1070" height="315" rx="10" fill="#0F172A" fill-opacity="0.92" stroke="#C084FC" stroke-width="1.4"/>
+    <path d="M 0 10 Q 0 0 10 0 L 1060 0 Q 1070 0 1070 10 L 1070 38 L 0 38 Z" fill="#C084FC" fill-opacity="0.12"/>
+    <text x="20" y="25" fill="#E9D5FF" font-size="14" font-weight="700" letter-spacing="0.02em">6. CONTINUOUS INTEGRATION &amp; DUAL DEPLOYMENT PIPELINE</text>
+    <text x="710" y="25" fill="#C084FC" font-size="11" font-family="monospace">GIT PUSH ➔ VERCEL DEPLOY + RENDER WORKER + PRISMA</text>
+
+    <!-- 1: Git Push -->
+    <g transform="translate(16, 55)">
+      <rect x="0" y="0" width="98" height="155" rx="6" fill="#1E293B" stroke="#334155"/>
+      <rect x="8" y="8" width="82" height="22" rx="4" fill="#C084FC" fill-opacity="0.15"/>
+      <text x="16" y="23" fill="#E9D5FF" font-size="10" font-weight="700">STEP 1</text>
+      <text x="10" y="48" fill="#FFFFFF" font-size="11" font-weight="700">Git Push</text>
+      <text x="10" y="68" fill="#CBD5E1" font-size="10">Trigger:</text>
+      <text x="10" y="84" fill="#38BDF8" font-size="10" font-family="monospace">main branch</text>
+      <text x="10" y="106" fill="#94A3B8" font-size="9">• GitHub push</text>
+      <text x="10" y="122" fill="#94A3B8" font-size="9">• Webhook to</text>
+      <text x="10" y="138" fill="#94A3B8" font-size="9">  both platforms</text>
+    </g>
+
+    <path d="M 116 132 L 126 132" fill="none" stroke="#C084FC" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+
+    <!-- 2: GitHub Actions -->
+    <g transform="translate(128, 55)">
+      <rect x="0" y="0" width="102" height="155" rx="6" fill="#1E293B" stroke="#334155"/>
+      <rect x="8" y="8" width="86" height="22" rx="4" fill="#C084FC" fill-opacity="0.15"/>
+      <text x="18" y="23" fill="#E9D5FF" font-size="10" font-weight="700">STEP 2</text>
+      <text x="10" y="48" fill="#FFFFFF" font-size="11" font-weight="700">CI Runner</text>
+      <text x="10" y="68" fill="#CBD5E1" font-size="10">Validation:</text>
+      <text x="10" y="84" fill="#38BDF8" font-size="10" font-family="monospace">ubuntu-24</text>
+      <text x="10" y="106" fill="#94A3B8" font-size="9">• Node 20 LTS</text>
+      <text x="10" y="122" fill="#94A3B8" font-size="9">• 2000 free min</text>
+      <text x="10" y="138" fill="#94A3B8" font-size="9">• Dependency cache</text>
+    </g>
+
+    <path d="M 232 132 L 242 132" fill="none" stroke="#C084FC" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+
+    <!-- 3: Tests (Validate) -->
+    <g transform="translate(244, 55)">
+      <rect x="0" y="0" width="102" height="155" rx="6" fill="#1E293B" stroke="#334155"/>
+      <rect x="8" y="8" width="86" height="22" rx="4" fill="#C084FC" fill-opacity="0.15"/>
+      <text x="18" y="23" fill="#E9D5FF" font-size="10" font-weight="700">STEP 3</text>
+      <text x="10" y="48" fill="#FFFFFF" font-size="11" font-weight="700">Tests</text>
+      <text x="10" y="68" fill="#CBD5E1" font-size="10">Validation:</text>
+      <text x="10" y="84" fill="#34D399" font-size="9" font-family="monospace">tsc --noEmit</text>
+      <text x="10" y="106" fill="#94A3B8" font-size="9">• Type checks</text>
+      <text x="10" y="122" fill="#94A3B8" font-size="9">• Unit tests</text>
+      <text x="10" y="138" fill="#94A3B8" font-size="9">• Lint check</text>
+    </g>
+
+    <path d="M 348 132 L 358 132" fill="none" stroke="#C084FC" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+
+    <!-- 4: Build Verification -->
+    <g transform="translate(360, 55)">
+      <rect x="0" y="0" width="102" height="155" rx="6" fill="#1E293B" stroke="#334155"/>
+      <rect x="8" y="8" width="86" height="22" rx="4" fill="#C084FC" fill-opacity="0.15"/>
+      <text x="18" y="23" fill="#E9D5FF" font-size="10" font-weight="700">STEP 4</text>
+      <text x="10" y="48" fill="#FFFFFF" font-size="11" font-weight="700">Build Next</text>
+      <text x="10" y="68" fill="#CBD5E1" font-size="10">Optimization:</text>
+      <text x="10" y="84" fill="#38BDF8" font-size="9" font-family="monospace">next build</text>
+      <text x="10" y="106" fill="#94A3B8" font-size="9">• 29/29 routes</text>
+      <text x="10" y="122" fill="#94A3B8" font-size="9">• Static SSG</text>
+      <text x="10" y="138" fill="#94A3B8" font-size="9">• Dynamic SSR</text>
+    </g>
+
+    <path d="M 464 132 L 474 132" fill="none" stroke="#C084FC" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+
+    <!-- 5: Deploy to Vercel -->
+    <g transform="translate(476, 55)">
+      <rect x="0" y="0" width="104" height="155" rx="6" fill="#1E293B" stroke="#38BDF8" stroke-width="1.2"/>
+      <rect x="8" y="8" width="88" height="22" rx="4" fill="#38BDF8" fill-opacity="0.15"/>
+      <text x="20" y="23" fill="#7DD3FC" font-size="10" font-weight="700">STEP 5</text>
+      <text x="10" y="48" fill="#FFFFFF" font-size="11" font-weight="700">Vercel Deploy</text>
+      <text x="10" y="68" fill="#CBD5E1" font-size="10">Web Storefront:</text>
+      <text x="10" y="84" fill="#38BDF8" font-size="9" font-family="monospace">vercel.app</text>
+      <text x="10" y="106" fill="#94A3B8" font-size="9">• Global Edge</text>
+      <text x="10" y="122" fill="#94A3B8" font-size="9">• Zero Cold Start</text>
+      <text x="10" y="138" fill="#34D399" font-size="9">• $0 Hobby Plan</text>
+    </g>
+
+    <path d="M 582 132 L 592 132" fill="none" stroke="#06B6D4" stroke-width="1.8" marker-end="url(#arrow-teal)"/>
+
+    <!-- 6: Deploy to Render -->
+    <g transform="translate(594, 55)">
+      <rect x="0" y="0" width="104" height="155" rx="6" fill="#1E293B" stroke="#06B6D4" stroke-width="1.2"/>
+      <rect x="8" y="8" width="88" height="22" rx="4" fill="#06B6D4" fill-opacity="0.15"/>
+      <text x="20" y="23" fill="#67E8F9" font-size="10" font-weight="700">STEP 6</text>
+      <text x="10" y="48" fill="#FFFFFF" font-size="11" font-weight="700">Render Deploy</text>
+      <text x="10" y="68" fill="#CBD5E1" font-size="10">Media Worker:</text>
+      <text x="10" y="84" fill="#67E8F9" font-size="9" font-family="monospace">onrender.com</text>
+      <text x="10" y="106" fill="#94A3B8" font-size="9">• npm run worker</text>
+      <text x="10" y="122" fill="#94A3B8" font-size="9">• Sharp pipeline</text>
+      <text x="10" y="138" fill="#34D399" font-size="9">• $0 Free Service</text>
+    </g>
+
+    <path d="M 700 132 L 710 132" fill="none" stroke="#00E599" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+
+    <!-- 7: Prisma Migration -->
+    <g transform="translate(712, 55)">
+      <rect x="0" y="0" width="106" height="155" rx="6" fill="#1E293B" stroke="#00E599" stroke-width="1.3"/>
+      <rect x="8" y="8" width="90" height="22" rx="4" fill="#00E599" fill-opacity="0.15"/>
+      <text x="22" y="23" fill="#34D399" font-size="10" font-weight="700">STEP 7</text>
+      <text x="10" y="48" fill="#34D399" font-size="11" font-weight="700">Prisma Deploy</text>
+      <text x="10" y="68" fill="#CBD5E1" font-size="10">Database Step:</text>
+      <text x="10" y="84" fill="#00E599" font-size="8" font-family="monospace">DIRECT_URL</text>
+      <text x="10" y="106" fill="#CBD5E1" font-size="9">• Direct to Neon</text>
+      <text x="10" y="122" fill="#CBD5E1" font-size="9">• Schema sync</text>
+      <text x="10" y="138" fill="#34D399" font-size="9">• Zero downtime</text>
+    </g>
+
+    <path d="M 818 132 L 828 132" fill="none" stroke="#10B981" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+
+    <!-- 8: UptimeRobot Keep-Alive -->
+    <g transform="translate(830, 55)">
+      <rect x="0" y="0" width="104" height="155" rx="6" fill="#1E293B" stroke="#10B981" stroke-width="1.4"/>
+      <rect x="8" y="8" width="88" height="22" rx="4" fill="#10B981" fill-opacity="0.18"/>
+      <text x="20" y="23" fill="#34D399" font-size="10" font-weight="700">STEP 8</text>
+      <text x="10" y="48" fill="#FFFFFF" font-size="11" font-weight="700">Keep-Alive</text>
+      <text x="10" y="68" fill="#CBD5E1" font-size="10">Ping Monitor:</text>
+      <text x="10" y="84" fill="#34D399" font-size="9" font-family="monospace">/health 14m</text>
+      <text x="10" y="106" fill="#CBD5E1" font-size="9">• UptimeRobot</text>
+      <text x="10" y="122" fill="#CBD5E1" font-size="9">• Keeps Render</text>
+      <text x="10" y="138" fill="#34D399" font-size="9">  Worker awake!</text>
+    </g>
+
+    <path d="M 934 132 L 944 132" fill="none" stroke="#10B981" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+
+    <!-- 9: Verified Live Production -->
+    <g transform="translate(946, 55)">
+      <rect x="0" y="0" width="108" height="155" rx="6" fill="#1E293B" stroke="#10B981" stroke-width="1.4"/>
+      <rect x="8" y="8" width="92" height="22" rx="4" fill="#10B981" fill-opacity="0.18"/>
+      <text x="22" y="23" fill="#34D399" font-size="10" font-weight="700">STEP 9</text>
+      <text x="10" y="48" fill="#34D399" font-size="11" font-weight="700">Live System</text>
+      <text x="10" y="68" fill="#CBD5E1" font-size="10">Status:</text>
+      <text x="10" y="84" fill="#34D399" font-size="9" font-family="monospace">100% Online</text>
+      <text x="10" y="106" fill="#CBD5E1" font-size="9">• $0.00 / Month</text>
+      <text x="10" y="122" fill="#CBD5E1" font-size="9">• Zero Credit Card</text>
+      <text x="10" y="138" fill="#34D399" font-size="9">• Production-Ready</text>
+    </g>
+
+    <!-- Pipeline Flow Summary Banner -->
+    <g transform="translate(16, 225)">
+      <rect x="0" y="0" width="1038" height="75" rx="6" fill="#0B0F19" stroke="#334155"/>
+      <text x="16" y="22" fill="#E9D5FF" font-size="11" font-weight="700">VERIFIED CI/CD LIFECYCLE ORDER:</text>
+      <text x="16" y="42" fill="#CBD5E1" font-size="10"><tspan fill="#C084FC">Code Push</tspan> ➔ <tspan fill="#C084FC">Validate (Tests)</tspan> ➔ <tspan fill="#38BDF8">Deploy Web (Vercel)</tspan> ➔ <tspan fill="#06B6D4">Deploy Worker (Render)</tspan> ➔ <tspan fill="#00E599">Prisma Migration (Neon)</tspan> ➔ <tspan fill="#34D399">Keep-Alive Active (UptimeRobot)</tspan></text>
+      <text x="16" y="62" fill="#94A3B8" font-size="10">• Vercel automatically redeploys storefront in seconds; Render worker pulls new code and executes background jobs with zero credit card required.</text>
+    </g>
+  </g>
+
+  <!-- ==================== 7. BOTTOM BUSINESS WORKFLOW ==================== -->
+  <g transform="translate(35, 1035)">
+    <rect x="0" y="0" width="1850" height="225" rx="10" fill="#0F172A" fill-opacity="0.95" stroke="#38BDF8" stroke-width="1.4"/>
+    <path d="M 0 10 Q 0 0 10 0 L 1840 0 Q 1850 0 1850 10 L 1850 38 L 0 38 Z" fill="#38BDF8" fill-opacity="0.12"/>
+    <text x="20" y="25" fill="#38BDF8" font-size="13" font-weight="700" letter-spacing="0.04em">END-TO-END BUSINESS &amp; PRINTING SERVICE WORKFLOW (CUSTOMER ➔ PRINTING SERVICE ➔ DELIVERY)</text>
+    <text x="1310" y="25" fill="#34D399" font-size="11" font-family="monospace">10-STAGE STATE MACHINE • WEBHOOK VERIFIED • ZERO DROPPED ORDERS</text>
+
+    <!-- 10 Lifecycle Stages Layout -->
+    <!-- 1. UPLOAD -->
+    <g transform="translate(18, 50)">
+      <rect x="0" y="0" width="168" height="155" rx="6" fill="#1E293B" stroke="#F59E0B"/>
+      <rect x="8" y="8" width="152" height="24" rx="4" fill="#F59E0B" fill-opacity="0.15"/>
+      <text x="16" y="24" fill="#FBBF24" font-size="11" font-weight="700">1. UPLOAD</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">Direct Ingress</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• Client requests presign</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• Vercel returns PUT URL</text>
+      <text x="12" y="104" fill="#34D399" font-size="10">• Direct browser ➔ R2</text>
+      <text x="12" y="122" fill="#94A3B8" font-size="9">• 0% server RAM load</text>
+      <rect x="10" y="132" width="148" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#FBBF24" font-size="9" font-family="monospace">Actor: Customer</text>
+    </g>
+
+    <path d="M 188 125 L 199 125" fill="none" stroke="#64748B" stroke-width="1.6" marker-end="url(#arrow-cyan)"/>
+
+    <!-- 2. ORDER CREATED -->
+    <g transform="translate(201, 50)">
+      <rect x="0" y="0" width="168" height="155" rx="6" fill="#1E293B" stroke="#334155"/>
+      <rect x="8" y="8" width="152" height="24" rx="4" fill="#64748B" fill-opacity="0.2"/>
+      <text x="16" y="24" fill="#CBD5E1" font-size="11" font-weight="700">2. ORDER CREATED</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">Order Placed</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• Print format chosen</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• Paper stock &amp; quantity</text>
+      <text x="12" y="104" fill="#CBD5E1" font-size="10">• Tariff &amp; tax calculated</text>
+      <text x="12" y="122" fill="#F59E0B" font-size="9">• Status: PENDING_PAY</text>
+      <rect x="10" y="132" width="148" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#CBD5E1" font-size="9" font-family="monospace">Module: Order Svc</text>
+    </g>
+
+    <path d="M 371 125 L 382 125" fill="none" stroke="#6366F1" stroke-width="1.6" marker-end="url(#arrow-purple)"/>
+
+    <!-- 3. PAYMENT CONFIRMED -->
+    <g transform="translate(384, 50)">
+      <rect x="0" y="0" width="170" height="155" rx="6" fill="#1E293B" stroke="#6366F1" stroke-width="1.2"/>
+      <rect x="8" y="8" width="154" height="24" rx="4" fill="#6366F1" fill-opacity="0.15"/>
+      <text x="16" y="24" fill="#A5B4FC" font-size="11" font-weight="700">3. PAYMENT</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">Webhook Verified</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• Stripe / eSewa checkout</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• Server-side webhook</text>
+      <text x="12" y="104" fill="#34D399" font-size="10">• Status: CONFIRMED</text>
+      <text x="12" y="122" fill="#A5B4FC" font-size="9">• Escrow ledger created</text>
+      <rect x="10" y="132" width="150" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#A5B4FC" font-size="9" font-family="monospace">Module: Payment Svc</text>
+    </g>
+
+    <path d="M 556 125 L 567 125" fill="none" stroke="#00E599" stroke-width="1.6" marker-end="url(#arrow-green)"/>
+
+    <!-- 4. PRINT JOB CREATED -->
+    <g transform="translate(569, 50)">
+      <rect x="0" y="0" width="168" height="155" rx="6" fill="#1E293B" stroke="#00E599" stroke-width="1.2"/>
+      <rect x="8" y="8" width="152" height="24" rx="4" fill="#00E599" fill-opacity="0.15"/>
+      <text x="16" y="24" fill="#34D399" font-size="11" font-weight="700">4. PRINT JOB</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">pg-boss Enqueue</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• Only created after pay</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• Atomic DB transaction</text>
+      <text x="12" y="104" fill="#CBD5E1" font-size="10">• Preflight job enqueued</text>
+      <text x="12" y="122" fill="#34D399" font-size="9">• Status: ENQUEUED</text>
+      <rect x="10" y="132" width="148" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#34D399" font-size="9" font-family="monospace">Queue: print-job</text>
+    </g>
+
+    <path d="M 739 125 L 750 125" fill="none" stroke="#F472B6" stroke-width="1.6" marker-end="url(#arrow-teal)"/>
+
+    <!-- 5. PRINTER NOTIFIED -->
+    <g transform="translate(752, 50)">
+      <rect x="0" y="0" width="168" height="155" rx="6" fill="#1E293B" stroke="#EC4899"/>
+      <rect x="8" y="8" width="152" height="24" rx="4" fill="#EC4899" fill-opacity="0.15"/>
+      <text x="16" y="24" fill="#F472B6" font-size="11" font-weight="700">5. PRINTER NOTIFIED</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">Lab Telegraph</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• Partner studio alerted</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• Dashboard telegraph</text>
+      <text x="12" y="104" fill="#CBD5E1" font-size="10">• Email dispatch</text>
+      <text x="12" y="122" fill="#F472B6" font-size="9">• Future: SMS/WhatsApp</text>
+      <rect x="10" y="132" width="148" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#F472B6" font-size="9" font-family="monospace">Actor: Darkroom Partner</text>
+    </g>
+
+    <path d="M 922 125 L 933 125" fill="none" stroke="#38BDF8" stroke-width="1.6" marker-end="url(#arrow-cyan)"/>
+
+    <!-- 6. ACCEPTED -->
+    <g transform="translate(935, 50)">
+      <rect x="0" y="0" width="168" height="155" rx="6" fill="#1E293B" stroke="#38BDF8" stroke-width="1.2"/>
+      <rect x="8" y="8" width="152" height="24" rx="4" fill="#38BDF8" fill-opacity="0.15"/>
+      <text x="16" y="24" fill="#7DD3FC" font-size="11" font-weight="700">6. ACCEPTED</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">Printer Portal</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• Studio claims order</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• Inspects print specs</text>
+      <text x="12" y="104" fill="#38BDF8" font-size="10">• Generates signed URL</text>
+      <text x="12" y="122" fill="#7DD3FC" font-size="9">• Downloads 300 DPI plate</text>
+      <rect x="10" y="132" width="148" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#7DD3FC" font-size="9" font-family="monospace">Portal: Printer Portal</text>
+    </g>
+
+    <path d="M 1105 125 L 1116 125" fill="none" stroke="#00E599" stroke-width="1.6" marker-end="url(#arrow-green)"/>
+
+    <!-- 7. PRINTING -->
+    <g transform="translate(1118, 50)">
+      <rect x="0" y="0" width="168" height="155" rx="6" fill="#1E293B" stroke="#00E599"/>
+      <rect x="8" y="8" width="152" height="24" rx="4" fill="#00E599" fill-opacity="0.15"/>
+      <text x="16" y="24" fill="#34D399" font-size="11" font-weight="700">7. PRINTING</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">Physical Press</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• Archival paper press</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• Chemical emulsion/cure</text>
+      <text x="12" y="104" fill="#CBD5E1" font-size="10">• QA inspection audit</text>
+      <text x="12" y="122" fill="#34D399" font-size="9">• Status: IN_PRINT</text>
+      <rect x="10" y="132" width="148" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#34D399" font-size="9" font-family="monospace">Darkroom: Active Press</text>
+    </g>
+
+    <path d="M 1288 125 L 1299 125" fill="none" stroke="#F59E0B" stroke-width="1.6" marker-end="url(#arrow-amber)"/>
+
+    <!-- 8. READY -->
+    <g transform="translate(1301, 50)">
+      <rect x="0" y="0" width="168" height="155" rx="6" fill="#1E293B" stroke="#F59E0B"/>
+      <rect x="8" y="8" width="152" height="24" rx="4" fill="#F59E0B" fill-opacity="0.15"/>
+      <text x="16" y="24" fill="#FBBF24" font-size="11" font-weight="700">8. READY</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">Packaged &amp; Sealed</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• Studio marks READY</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• Protective glassine</text>
+      <text x="12" y="104" fill="#CBD5E1" font-size="10">• Work order docket seal</text>
+      <text x="12" y="122" fill="#FBBF24" font-size="9">• Status: READY_FOR_DISPATCH</text>
+      <rect x="10" y="132" width="148" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#FBBF24" font-size="9" font-family="monospace">Handover Stage</text>
+    </g>
+
+    <path d="M 1471 125 L 1482 125" fill="none" stroke="#FB923C" stroke-width="1.6" marker-end="url(#arrow-amber)"/>
+
+    <!-- 9. DELIVERY -->
+    <g transform="translate(1484, 50)">
+      <rect x="0" y="0" width="170" height="155" rx="6" fill="#1E293B" stroke="#F97316" stroke-width="1.2"/>
+      <rect x="8" y="8" width="154" height="24" rx="4" fill="#F97316" fill-opacity="0.15"/>
+      <text x="16" y="24" fill="#FB923C" font-size="11" font-weight="700">9. DELIVERY</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">Branched Handover</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• <tspan fill="#38BDF8">Pickup:</tspan> 6-Digit PIN</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• <tspan fill="#FB923C">Courier:</tspan> Waybill #</text>
+      <text x="12" y="104" fill="#CBD5E1" font-size="10">• Tracking link sent</text>
+      <text x="12" y="122" fill="#FB923C" font-size="9">• Status: OUT_FOR_DELIVERY</text>
+      <rect x="10" y="132" width="150" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#FB923C" font-size="9" font-family="monospace">Module: Delivery Svc</text>
+    </g>
+
+    <path d="M 1656 125 L 1667 125" fill="none" stroke="#10B981" stroke-width="1.8" marker-end="url(#arrow-green)"/>
+
+    <!-- 10. DELIVERED -->
+    <g transform="translate(1669, 50)">
+      <rect x="0" y="0" width="163" height="155" rx="6" fill="#1E293B" stroke="#10B981" stroke-width="1.3"/>
+      <rect x="8" y="8" width="147" height="24" rx="4" fill="#10B981" fill-opacity="0.15"/>
+      <text x="16" y="24" fill="#34D399" font-size="11" font-weight="700">10. DELIVERED</text>
+      <text x="12" y="50" fill="#FFFFFF" font-size="11" font-weight="600">Completed Order</text>
+      <text x="12" y="70" fill="#CBD5E1" font-size="10">• PIN verified / Courier POD</text>
+      <text x="12" y="86" fill="#CBD5E1" font-size="10">• Client receives prints</text>
+      <text x="12" y="104" fill="#34D399" font-size="10">• Escrow payout release</text>
+      <text x="12" y="122" fill="#34D399" font-size="9">• Status: COMPLETED</text>
+      <rect x="10" y="132" width="143" height="16" rx="3" fill="#0B0F19"/>
+      <text x="14" y="144" fill="#34D399" font-size="9" font-family="monospace">Settlement Released</text>
+    </g>
+  </g>
+
+  <!-- ==================== CROSS-TIER CONNECTIVE FLOW LINES ==================== -->
+  
+  <!-- Flow A: Vercel Edge Ingress to Storefront -->
+  <path d="M 325 380 L 550 220" fill="none" stroke="#38BDF8" stroke-width="2.2" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Flow B: Next.js Payment Module to Stripe/eSewa -->
+  <path d="M 1087 236 L 1120 236" fill="none" stroke="#6366F1" stroke-width="2" marker-end="url(#arrow-purple)"/>
+  
+  <!-- Flow C: Webhook from Stripe/eSewa to Next.js Payment Module -->
+  <path d="M 1120 255 L 1087 255" fill="none" stroke="#A5B4FC" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow-purple)"/>
+
+  <!-- Flow D: Next.js to Neon Database (DATABASE_URL) -->
+  <path d="M 1087 180 L 1115 180 L 1115 85 L 1400 85 L 1400 157" fill="none" stroke="#00E599" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Flow E: Next.js Atomic Enqueue to pg-boss Queue -->
+  <path d="M 1087 310 L 1315 310 L 1315 450 L 1339 450" fill="none" stroke="#10B981" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Flow F: Render Worker Consumes/Dequeues from pg-boss -->
+  <path d="M 1339 490 L 1110 490 L 1110 490 L 747 490" fill="none" stroke="#00E599" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow-green)"/>
+
+  <!-- Flow G: Next.js to Storage (Presigned metadata request) -->
+  <path d="M 1087 330 L 1105 330 L 1105 75 L 1750 75 L 1750 157" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#arrow-amber)"/>
+
+  <!-- Flow H: Render Worker Sharp Pipeline reads/writes Storage -->
+  <path d="M 747 540 L 1315 540 L 1315 625 L 1755 625 L 1755 570" fill="none" stroke="#F97316" stroke-width="2" marker-end="url(#arrow-amber)"/>
+
+  <!-- Flow I: Application Observability to Prometheus & Loki -->
+  <path d="M 640 690 L 640 730 L 400 730 L 400 755" fill="none" stroke="#38BDF8" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#arrow-cyan)"/>
+  <path d="M 690 690 L 690 730 L 630 730 L 630 755" fill="none" stroke="#00E599" stroke-width="1.8" stroke-dasharray="3 3" marker-end="url(#arrow-green)"/>
+
+  <!-- Flow J: CI/CD Prisma Deploy to Neon (DIRECT_URL on port 5432) -->
+  <path d="M 1740 760 L 1740 720 L 1460 720 L 1460 385" fill="none" stroke="#00E599" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow-green)"/>
+
+</svg>

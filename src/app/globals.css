@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FAF8F5;
+    --foreground: #1A1816;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "rlig" 1, "calt" 1, "onum" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #1A1816;
+    color: #FAF8F5;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif), Newsreader, "Playfair Display", Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+}
+
+@layer utilities {
+  /* Editorial Hairlines */
+  .hairline-b {
+    border-bottom: 1px solid #E8E2D8;
+  }
+  .hairline-t {
+    border-top: 1px solid #E8E2D8;
+  }
+  .hairline-y {
+    border-top: 1px solid #E8E2D8;
+    border-bottom: 1px solid #E8E2D8;
+  }
+  .double-rule {
+    border-top: 3px double #D6CEC2;
+    border-bottom: 1px solid #D6CEC2;
+  }
+  .plate-frame {
+    background-color: #FFFFFF;
+    border: 1px solid #E8E2D8;
+    padding: 12px;
+  }
+}

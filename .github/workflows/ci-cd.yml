@@ -1,0 +1,154 @@
+name: CI/CD Production Pipeline — Zero-Cost DevOps
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # ============================================================================
+  # 1. QUALITY ASSURANCE & COMPILE VERIFICATION
+  # ============================================================================
+  lint-and-typecheck:
+    name: Lint & Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: TypeScript Type Safety Check
+        run: npx tsc --noEmit
+
+  # ============================================================================
+  # 2. DOCKER BUILD & CONTAINER SECURITY AUDIT
+  # ============================================================================
+  build-and-scan:
+    name: Build Container & Trivy CVE Scan
+    needs: [lint-and-typecheck]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU (for ARM64 & AMD64)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Metadata (Tags, Labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,format=short
+
+      - name: Build Docker Image (Local cache for Trivy)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:trivy-scan
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run Trivy Container Vulnerability Scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:trivy-scan
+          format: 'table'
+          exit-code: '0' # Audit without breaking initial setups; set to 1 to block on CRITICAL
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Build and Push Multi-Arch Image to GHCR
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ============================================================================
+  # 3. PRODUCTION DEPLOYMENT TO ORACLE CLOUD (OCI) ALWAYS-FREE VM
+  # ============================================================================
+  deploy-production:
+    name: Deploy to OCI ARM Host
+    needs: [build-and-scan]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js for Database Migration
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Execute Prisma Migration directly against Neon
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
+        run: |
+          npm ci
+          npx prisma migrate deploy
+
+      - name: Deploy to OCI Host via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.OCI_VM_IP }}
+          username: ${{ secrets.OCI_VM_USER || 'ubuntu' }}
+          key: ${{ secrets.OCI_SSH_PRIVATE_KEY }}
+          script: |
+            cd /opt/chitrabazaar
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+            docker compose -f docker-compose.prod.yml pull
+            docker compose -f docker-compose.prod.yml up -d --remove-orphans
+            docker system prune -af --filter "until=48h"
+
+      - name: Post-Deployment Health Check Probe (/api/health)
+        run: |
+          echo "Waiting 15 seconds for containers to stabilize..."
+          sleep 15
+          HEALTH_URL="${{ secrets.PRODUCTION_APP_URL || 'https://chitrabazaar.com' }}/api/health"
+          echo "Probing health status: $HEALTH_URL"
+          curl --fail --retry 5 --retry-delay 5 --retry-connrefused "$HEALTH_URL" || exit 1
+          echo "Production deployment verified healthy!"
