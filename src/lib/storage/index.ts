@@ -43,10 +43,26 @@ export async function uploadFile(
 ): Promise<UploadResult> {
   const provider = process.env.STORAGE_PROVIDER || 'local';
 
-  // S3 / Cloudinary integrations can be swapped in here when credentials are provided
-  if (provider === 's3' && process.env.AWS_BUCKET_NAME) {
-    // Production AWS S3 signed upload implementation
-    // fallback to local if keys are missing
+  // If R2 or S3 is configured, stream buffer directly to Cloudflare R2
+  if (provider === 's3' || process.env.CLOUDFLARE_R2_ACCESS_KEY_ID || process.env.S3_ACCESS_KEY) {
+    try {
+      const { uploadProcessedAsset } = await import('@/modules/storage/r2');
+      const extension = path.extname(originalFilename) || '.jpg';
+      const cleanName = path.basename(originalFilename, extension).replace(/[^a-zA-Z0-9_-]/g, '_');
+      const datePrefix = new Date().toISOString().slice(0, 10);
+      const uniqueKey = `raw/${datePrefix}/${Date.now()}-${Math.random().toString(36).substring(2, 7)}-${cleanName}${extension}`;
+
+      const uploadedUrl = await uploadProcessedAsset(uniqueKey, buffer, mimeType);
+
+      return {
+        url: uploadedUrl || uniqueKey,
+        filename: originalFilename,
+        size: buffer.length,
+        mimeType,
+      };
+    } catch (r2Err) {
+      console.warn('Direct cloud storage upload failed, attempting local fallback:', r2Err);
+    }
   }
 
   // Local/Direct storage for seamless development and testing

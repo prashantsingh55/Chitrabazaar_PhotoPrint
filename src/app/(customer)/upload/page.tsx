@@ -28,6 +28,7 @@ import {
 export interface PhotoItem {
   id: string;
   url: string;
+  previewUrl?: string;
   filename: string;
   size: string; // PrintSize enum
   paperType: string; // PaperType enum
@@ -173,10 +174,11 @@ function UploadContent() {
     setUploadError(null);
 
     try {
-      const uploadedFiles: { url: string; filename: string }[] = [];
+      const uploadedFiles: { url: string; previewUrl: string; filename: string }[] = [];
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
+        const localPreviewUrl = typeof window !== 'undefined' ? URL.createObjectURL(file) : '';
 
         // 1. Attempt Cloudflare R2 Direct Presigned Upload
         try {
@@ -202,7 +204,8 @@ function UploadContent() {
 
               if (r2PutRes.ok) {
                 uploadedFiles.push({
-                  url: presignData.publicUrl || presignData.assetKey,
+                  url: presignData.assetKey || presignData.publicUrl,
+                  previewUrl: localPreviewUrl,
                   filename: file.name,
                 });
                 continue; // Successfully streamed to R2
@@ -213,7 +216,7 @@ function UploadContent() {
           console.warn('[Direct R2 Upload] Presign streaming fallback to standard upload:', presignErr);
         }
 
-        // 2. Fallback to standard server-buffered upload for local development
+        // 2. Fallback to standard server-buffered upload for resilience
         const formData = new FormData();
         formData.append('files', file);
 
@@ -228,13 +231,19 @@ function UploadContent() {
         }
 
         if (data.files && data.files.length > 0) {
-          uploadedFiles.push(...data.files);
+          uploadedFiles.push(
+            ...data.files.map((f: any) => ({
+              ...f,
+              previewUrl: localPreviewUrl,
+            }))
+          );
         }
       }
 
       const newItems: PhotoItem[] = uploadedFiles.map((f) => ({
         id: `item-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
         url: f.url,
+        previewUrl: f.previewUrl,
         filename: f.filename,
         size: activeSpecs.size,
         paperType: activeSpecs.paperType,
@@ -501,7 +510,7 @@ function UploadContent() {
                     <div className="p-2.5 bg-white border border-[#E8E2D8] rounded-[2px]">
                       <div className="relative aspect-[4/3] bg-[#F4F0E8] overflow-hidden flex items-center justify-center border border-[#E8E2D8]/60">
                         <img
-                          src={item.url}
+                          src={item.previewUrl || item.url}
                           alt={item.filename}
                           style={{ transform: `rotate(${item.rotation}deg)` }}
                           className="max-h-full max-w-full object-contain transition-transform duration-300"

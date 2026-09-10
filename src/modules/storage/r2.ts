@@ -127,18 +127,39 @@ export async function createPresignedUploadUrl(
  * Generates a short-lived (15 min) presigned GET URL for authorized photo studio technicians
  * to securely download raw or 300 DPI master plates without exposing bucket credentials.
  */
+/**
+ * Normalizes an asset key, stripping protocol, hostname, or bucket prefix if a full URL was provided.
+ */
+export function normalizeAssetKey(keyOrUrl: string): string {
+  if (!keyOrUrl) return '';
+  if (keyOrUrl.startsWith('http://') || keyOrUrl.startsWith('https://')) {
+    try {
+      const url = new URL(keyOrUrl);
+      let pathname = url.pathname.replace(/^\/+/, '');
+      if (R2_BUCKET_NAME && pathname.startsWith(`${R2_BUCKET_NAME}/`)) {
+        pathname = pathname.slice(R2_BUCKET_NAME.length + 1);
+      }
+      return pathname;
+    } catch {
+      return keyOrUrl;
+    }
+  }
+  return keyOrUrl.replace(/^\/+/, '');
+}
+
 export async function createPresignedDownloadUrl(
   assetKey: string,
   expiresInSeconds: number = 900
 ): Promise<string> {
+  const normalizedKey = normalizeAssetKey(assetKey);
   if (!isR2Configured) {
     // Local development fallback
-    return assetKey.startsWith('/') ? assetKey : `/uploads/${assetKey.split('/').pop()}`;
+    return normalizedKey.startsWith('/') ? normalizedKey : `/uploads/${normalizedKey.split('/').pop()}`;
   }
 
   const command = new GetObjectCommand({
     Bucket: R2_BUCKET_NAME,
-    Key: assetKey,
+    Key: normalizedKey,
   });
 
   return await getSignedUrl(r2Client, command, { expiresIn: expiresInSeconds });
@@ -148,25 +169,26 @@ export async function createPresignedDownloadUrl(
  * Fetches an object buffer from Cloudflare R2 (used by the background media worker).
  */
 export async function getAssetBuffer(assetKey: string): Promise<Buffer> {
+  const normalizedKey = normalizeAssetKey(assetKey);
   if (!isR2Configured) {
     // Local fallback: read from public/uploads
     const fs = await import('fs');
     const path = await import('path');
-    const localPath = path.join(process.cwd(), 'public', assetKey.startsWith('/') ? assetKey.slice(1) : assetKey);
+    const localPath = path.join(process.cwd(), 'public', normalizedKey.startsWith('/') ? normalizedKey.slice(1) : normalizedKey);
     if (fs.existsSync(localPath)) {
       return fs.readFileSync(localPath);
     }
     // Check uploads directly
-    const fallbackPath = path.join(process.cwd(), 'public', 'uploads', assetKey.split('/').pop() || '');
+    const fallbackPath = path.join(process.cwd(), 'public', 'uploads', normalizedKey.split('/').pop() || '');
     if (fs.existsSync(fallbackPath)) {
       return fs.readFileSync(fallbackPath);
     }
-    throw new Error(`Local file not found for asset key: ${assetKey}`);
+    throw new Error(`Local file not found for asset key: ${normalizedKey}`);
   }
 
   const command = new GetObjectCommand({
     Bucket: R2_BUCKET_NAME,
-    Key: assetKey,
+    Key: normalizedKey,
   });
 
   const response = await r2Client.send(command);
