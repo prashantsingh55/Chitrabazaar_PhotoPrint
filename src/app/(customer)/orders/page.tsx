@@ -10,6 +10,7 @@ import {
   formatCurrency,
   formatDateTime,
   getStatusColor,
+  getMediaUrl,
 } from '@/lib/utils';
 import {
   ArrowRight,
@@ -168,7 +169,7 @@ export default function OrdersPage() {
                         className="w-14 h-14 rounded-[1px] border border-[#E8E2D8] shrink-0 overflow-hidden relative bg-white p-1"
                       >
                         <img
-                          src={item.photoUrl}
+                          src={getMediaUrl(item.printJob?.proofAssetKey || item.photoUrl)}
                           alt=""
                           className="w-full h-full object-cover"
                         />

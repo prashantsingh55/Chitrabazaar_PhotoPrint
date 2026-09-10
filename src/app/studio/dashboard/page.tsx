@@ -10,6 +10,7 @@ import {
   formatCurrency,
   formatDateTime,
   getStatusColor,
+  getMediaUrl,
 } from '@/lib/utils';
 import {
   Printer,
@@ -287,7 +288,7 @@ export default function StudioDashboardPage() {
                         key={idx}
                         className="w-14 h-14 rounded-[2px] border border-[#E8E2D8] bg-[#F4F0E8] p-0.5 shrink-0 overflow-hidden relative shadow-xs"
                       >
-                        <img src={item.photoUrl} alt="" className="w-full h-full object-cover rounded-[1px]" />
+                        <img src={getMediaUrl(item.printJob?.proofAssetKey || item.photoUrl)} alt="" className="w-full h-full object-cover rounded-[1px]" />
                       </div>
                     ))}
                   </div>

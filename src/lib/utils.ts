@@ -119,3 +119,32 @@ export function getStatusColor(status: string): { bg: string; text: string; labe
       };
   }
 }
+
+/**
+ * Resolves an asset key or media URL to an absolute web-accessible URL.
+ * Handles R2 storage keys (e.g. "raw/...", "masters/...", "proofs/..."),
+ * local uploads ("/uploads/..."), external URLs (http/https), and data URLs.
+ */
+export function getMediaUrl(keyOrUrl?: string | null): string {
+  if (!keyOrUrl) return '';
+  if (
+    keyOrUrl.startsWith('http://') ||
+    keyOrUrl.startsWith('https://') ||
+    keyOrUrl.startsWith('data:') ||
+    keyOrUrl.startsWith('blob:')
+  ) {
+    return keyOrUrl;
+  }
+  if (keyOrUrl.startsWith('/api/assets/')) {
+    return keyOrUrl;
+  }
+  if (keyOrUrl.startsWith('/uploads/')) {
+    return keyOrUrl;
+  }
+  const cleanKey = keyOrUrl.replace(/^\/+/, '');
+  const encodedPath = cleanKey
+    .split('/')
+    .map((seg) => encodeURIComponent(seg))
+    .join('/');
+  return `/api/assets/${encodedPath}`;
+}

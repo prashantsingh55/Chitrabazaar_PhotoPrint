@@ -57,7 +57,11 @@ export async function GET(req: NextRequest) {
       include: {
         customer: { select: { id: true, name: true, email: true, phone: true } },
         studio: { select: { id: true, name: true, phone: true, city: true, address: true } },
-        items: true,
+        items: {
+          include: {
+            printJob: true,
+          },
+        },
         deliveryAddress: true,
         payments: true,
       },

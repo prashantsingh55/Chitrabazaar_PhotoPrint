@@ -149,17 +149,24 @@ export function normalizeAssetKey(keyOrUrl: string): string {
 
 export async function createPresignedDownloadUrl(
   assetKey: string,
-  expiresInSeconds: number = 900
+  expiresInSeconds: number = 900,
+  downloadFilename?: string
 ): Promise<string> {
   const normalizedKey = normalizeAssetKey(assetKey);
   if (!isR2Configured) {
     // Local development fallback
-    return normalizedKey.startsWith('/') ? normalizedKey : `/uploads/${normalizedKey.split('/').pop()}`;
+    const localTarget = normalizedKey.startsWith('/') ? normalizedKey : `/uploads/${normalizedKey.split('/').pop()}`;
+    return downloadFilename ? `${localTarget}?filename=${encodeURIComponent(downloadFilename)}` : localTarget;
   }
+
+  const cleanFilename = downloadFilename ? downloadFilename.replace(/["\r\n]/g, '_') : undefined;
 
   const command = new GetObjectCommand({
     Bucket: R2_BUCKET_NAME,
     Key: normalizedKey,
+    ResponseContentDisposition: cleanFilename
+      ? `attachment; filename="${cleanFilename}"`
+      : undefined,
   });
 
   return await getSignedUrl(r2Client, command, { expiresIn: expiresInSeconds });

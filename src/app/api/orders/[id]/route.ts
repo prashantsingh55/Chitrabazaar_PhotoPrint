@@ -22,7 +22,11 @@ export async function GET(
       include: {
         customer: { select: { id: true, name: true, email: true, phone: true } },
         studio: true,
-        items: true,
+        items: {
+          include: {
+            printJob: true,
+          },
+        },
         deliveryAddress: true,
         payments: true,
       },

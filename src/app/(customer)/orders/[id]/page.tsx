@@ -11,6 +11,7 @@ import {
   formatDateTime,
   PRINT_SIZE_LABELS,
   getStatusColor,
+  getMediaUrl,
 } from '@/lib/utils';
 import {
   ArrowLeft,
@@ -205,7 +206,7 @@ export default function OrderDetailPage() {
                   <div className="flex items-center gap-3.5">
                     <div className="w-16 h-16 rounded-[1px] border border-[#E8E2D8] bg-white p-1 overflow-hidden relative shrink-0">
                       <img
-                        src={item.photoUrl}
+                        src={getMediaUrl(item.photoUrl)}
                         alt={item.originalFilename}
                         style={{ transform: `rotate(${item.cropRotation || 0}deg)` }}
                         className="w-full h-full object-cover"
@@ -238,7 +239,8 @@ export default function OrderDetailPage() {
                       {formatCurrency(item.totalPrice)}
                     </span>
                     <a
-                      href={item.photoUrl}
+                      href={`/api/assets/${item.photoUrl}?download=1&filename=${encodeURIComponent(item.originalFilename || 'photo.jpg')}`}
+                      download={item.originalFilename || 'photo.jpg'}
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-1 text-[11px] font-mono uppercase tracking-wider text-[#1A1816] hover:underline"

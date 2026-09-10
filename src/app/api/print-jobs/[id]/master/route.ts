@@ -34,13 +34,20 @@ export async function GET(
     }
 
     const assetKeyToDownload = printJob.masterAssetKey || printJob.rawAssetKey;
-    const presignedDownloadUrl = await createPresignedDownloadUrl(assetKeyToDownload, 900);
+    const isMaster = Boolean(printJob.masterAssetKey);
+    const filename = `${printJob.jobDocketNumber}-${isMaster ? '300dpi-master' : 'raw'}.jpg`;
+    const presignedDownloadUrl = await createPresignedDownloadUrl(assetKeyToDownload, 900, filename);
+
+    const url = new URL(req.url);
+    if (url.searchParams.get('download') === '1' || url.searchParams.get('redirect') === '1') {
+      return NextResponse.redirect(presignedDownloadUrl, { status: 307 });
+    }
 
     return NextResponse.json({
       success: true,
       downloadUrl: presignedDownloadUrl,
       docketNumber: printJob.jobDocketNumber,
-      isMaster: Boolean(printJob.masterAssetKey),
+      isMaster,
       expiresInSeconds: 900,
     });
   } catch (error) {
