@@ -9,6 +9,7 @@ import {
   PRINT_SIZE_PRICES,
   PAPER_TYPE_SURCHARGES,
   formatCurrency,
+  getMediaUrl,
 } from '@/lib/utils';
 import {
   UploadCloud,
@@ -510,7 +511,7 @@ function UploadContent() {
                     <div className="p-2.5 bg-white border border-[#E8E2D8] rounded-[2px]">
                       <div className="relative aspect-[4/3] bg-[#F4F0E8] overflow-hidden flex items-center justify-center border border-[#E8E2D8]/60">
                         <img
-                          src={item.previewUrl || item.url}
+                          src={item.previewUrl || getMediaUrl(item.url)}
                           alt={item.filename}
                           style={{ transform: `rotate(${item.rotation}deg)` }}
                           className="max-h-full max-w-full object-contain transition-transform duration-300"

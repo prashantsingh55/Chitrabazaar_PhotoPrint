@@ -13,6 +13,7 @@ import {
   PRINT_SIZE_PRICES,
   PAPER_TYPE_SURCHARGES,
   formatCurrency,
+  getMediaUrl,
 } from '@/lib/utils';
 import {
   ShieldCheck,
@@ -466,7 +467,7 @@ export default function CheckoutPage() {
                   <div key={idx} className="py-2.5 flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
                       <img
-                        src={item.url}
+                        src={getMediaUrl((item as any).previewUrl || item.url)}
                         alt=""
                         className="w-9 h-9 rounded-[1px] object-cover border border-[#E8E2D8] shrink-0"
                       />
