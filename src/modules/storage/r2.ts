@@ -8,14 +8,30 @@ import {
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 const R2_ACCOUNT_ID = process.env.CLOUDFLARE_R2_ACCOUNT_ID || '';
-const R2_ACCESS_KEY_ID = process.env.CLOUDFLARE_R2_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID || '';
-const R2_SECRET_ACCESS_KEY = process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY || '';
-const R2_BUCKET_NAME = process.env.CLOUDFLARE_R2_BUCKET_NAME || process.env.AWS_BUCKET_NAME || 'chitrabazaar-media';
+const R2_ACCESS_KEY_ID =
+  process.env.CLOUDFLARE_R2_ACCESS_KEY_ID ||
+  process.env.S3_ACCESS_KEY ||
+  process.env.S3_ACCESS_KEY_ID ||
+  process.env.AWS_ACCESS_KEY_ID ||
+  '';
+const R2_SECRET_ACCESS_KEY =
+  process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY ||
+  process.env.S3_SECRET_KEY ||
+  process.env.S3_SECRET_ACCESS_KEY ||
+  process.env.AWS_SECRET_ACCESS_KEY ||
+  '';
+const R2_BUCKET_NAME =
+  process.env.CLOUDFLARE_R2_BUCKET_NAME ||
+  process.env.S3_BUCKET ||
+  process.env.S3_BUCKET_NAME ||
+  process.env.AWS_BUCKET_NAME ||
+  'chitrabazaar-media';
 const R2_PUBLIC_URL = process.env.CLOUDFLARE_R2_PUBLIC_URL || process.env.NEXT_PUBLIC_MEDIA_URL || '';
 
 // Compute Cloudflare R2 endpoint URL
 const R2_ENDPOINT =
   process.env.CLOUDFLARE_R2_ENDPOINT ||
+  process.env.S3_ENDPOINT ||
   (R2_ACCOUNT_ID ? `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com` : undefined);
 
 export const isR2Configured = Boolean(
