@@ -1,0 +1,31 @@
+global:
+  scrape_interval: 60s
+  evaluation_interval: 60s
+
+# Ship collected metrics to Grafana Cloud Remote Write endpoint
+remote_write:
+  - url: https://prometheus-prod-43-prod-ap-south-1.grafana.net/api/prom/push
+    basic_auth:
+      username: 3574240
+      password: ${GRAFANA_REMOTE_WRITE_TOKEN}
+
+scrape_configs:
+  # 1. Chitrabazaar Production Web & APIs (Vercel)
+  - job_name: chitrabazaar-production
+    metrics_path: /api/metrics
+    scheme: https
+    static_configs:
+      - targets: ["chitrabazaar.vercel.app"]
+        labels:
+          environment: production
+          app: chitrabazaar
+
+  # 2. Chitrabazaar Local Development (Optional)
+  - job_name: chitrabazaar-local
+    metrics_path: /api/metrics
+    scheme: http
+    static_configs:
+      - targets: ["localhost:3000"]
+        labels:
+          environment: development
+          app: chitrabazaar
